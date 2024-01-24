@@ -12,7 +12,7 @@ import java.util.Properties;
 public class DataBase {
 
     public static Connection getNewConnection() {
-    
+
         Connection connection = null;
         String url = "jdbc:sqlite:database.db";
 
@@ -22,10 +22,9 @@ public class DataBase {
             System.out.println("Connection is successful!");
 
         } catch (SQLException e) {
-            System.err.println("Error connecting to the database.");
-            e.printStackTrace();
+            throw new RuntimeException("Error connecting to the database.");
         } catch (Exception e) {
-            System.err.println(e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
 
         return connection;
