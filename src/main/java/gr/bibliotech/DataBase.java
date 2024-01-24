@@ -1,4 +1,4 @@
-package com.example;
+package gr.bibliotech;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class Connect {
+public class DataBase {
 
-    public static Connection enableConnection() {
+    public static Connection getNewConnection() {
     
         Connection connection = null;
         String url = "jdbc:sqlite:database.db";
