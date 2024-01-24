@@ -22,6 +22,6 @@ jobs:
     - name: Build
       run: mvn -B package --file pom.xml
     - name: Execute Jar
-      run: java -jar target/${env.finalName}.jar
+      run: java -jar target/BiblioSearch.jar
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
