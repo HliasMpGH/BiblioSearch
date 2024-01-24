@@ -1,0 +1,268 @@
+body {
+    background-color: #003E78;
+
+}
+
+.BookClubs {
+    background-color: #E8FCB0;
+    height: 100px;
+    top: 1500px;
+}
+
+form {
+    text-align: center;
+}
+
+/* Style the search input field */
+input[type="text"] {
+    width: 350px; 
+    padding: 12px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 18px;
+    outline: none;
+}
+
+/* Style the search button */
+input[type="submit"] {
+    background-color: #E8FCB0;
+    color: #808080;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.search-bar {
+    text-align: center;
+    margin-top: 70px;
+}
+
+/* Hover effect for the search button */
+input[type="submit"]:hover {
+    background-color: #ccc;
+}
+
+.filter-toggle-button {
+    background-color: #E8FCB0;
+    color: #7a7b51;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+label {
+    display: inline-block;
+    margin-right: 5px;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #E8FCB0;
+}
+
+select {
+    font-size: 18px;
+    color: #333; /* Set the color of the select element itself */
+}
+
+select option {
+    color: #333; /* Set the color of the option text */
+}
+
+/* Style the filter options container, initially hidden */
+.filter-options {
+    display: none;
+    margin-top: 25px;
+}
+
+/* Hover effect for the filter and search buttons */
+.filter-toggle-button:hover,
+.search-button:hover {
+    background-color: #ccc;
+}
+
+/* Additional styling for the search button */
+.search-button {
+    background-color: #E8FCB0;
+    color: #7a7b51;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 10px;
+}
+
+
+.search-text {
+    text-align: center;
+    margin-top: 150px;
+    top: 70px;
+    color: #E8FCB0;
+    font-family: 'Lily Script One', cursive, sans-serif;
+    font-size: 40px;
+}
+
+
+
+.myBox {
+    width: 1000px; 
+    height: 350px; 
+    border: 2px solid #003E78;
+    position: relative;
+    margin: 70px auto 0; 
+    border-radius: 10px; 
+}
+
+
+
+
+
+.product {
+    border: 1px solid #ccc;
+    background-color: #E8FCB0; 
+    border-radius: 20px;
+    padding: 10px; 
+    margin-bottom: 10px; 
+    display: flex; 
+    align-items: center; 
+    max-width: 650px;
+    margin-bottom: 10px;
+    margin: 70px auto 0;
+}
+
+.product img {
+    max-width: 100px; 
+    margin-right: 10px; 
+    border-radius: 10px;
+}
+
+.product #booktitle {
+    margin: 0; 
+    color: #0c3159;
+    font-family: 'Lily Script One', cursive, sans-serif;
+}
+
+.product p {
+    color: #000000; 
+}
+
+.product button {
+    background-color: #0056b3; 
+    border-radius: 20px;
+    color: #E8FCB0; 
+    border: none; 
+    padding: 5px 10px; 
+    margin-right: 5px; 
+    cursor: pointer; 
+}
+
+.product button:hover {
+    background-color: #003E78; 
+}
+
+.filter-options {
+    display: none;
+}
+
+
+
+.product {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column; /* Stack title and description vertically */
+}
+
+.button-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.buy-button,
+.details-button {
+    display: block;
+    margin-top: 10px; /* Adjust the margin as needed to control the spacing */
+}
+
+.product-options {
+    border-radius: 20px;
+    margin-top: 20px;
+    background-color: #0056b3 /* Replace with your desired background color */
+}
+
+
+@media (max-width: 480px) {
+
+  
+    .find_books {
+       display:none;
+    }
+
+    .fancy_header_container {
+        margin-top: 25%;
+    }
+
+
+    .div_titles {
+        font-size: 20px;
+    }
+
+
+    .book_clubs_hp {
+        top: 25%;
+        width: 70%;
+        margin-top: 25%;
+        margin-left: 25%;
+        margin-right:25%;
+        height: 400px;
+        
+
+    }
+
+    .icons {
+        display:none;
+    }
+
+    .check_out_forums {
+        top: 65%;
+        width: 80%;
+        margin-top: 50%;
+        margin-left: -40%;
+        margin-right:100%;
+        height: 70px;
+        text-align: center;
+
+    }
+
+
+    .search_books {
+        top: 75%;
+        width: 80%;
+        margin-top: 70%;
+        margin-left: -40%;
+        margin-right:25%;
+        height: 100px;
+        text-align: center;
+    }
+    
+    .homepage_container {
+        display: block; 
+    }
+
+    .book_clubs_hp .check_out_forums .search_books {
+        flex: none;  
+    }
+
+    .find_books {
+        top: 70%;
+        width: 90%;
+        margin-top: 70%;
+        margin-left: 5%;
+        margin-right:25%;
+        height: 300px;
+    }
+}

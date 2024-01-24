@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Search Books</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Kanit:wght@300&family=Lily+Script+One&family=Poppins:wght@100;300;500;600&family=Quicksand:wght@500&family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="resources/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/searchStyle.css">
+    <script src="/javascript/searching.js"></script>
+</head>
+
+<body>
+
+    <div class="alert-container" th:if="${message != null}">
+        <div class="alert alert-danger text-center message" style= "top:100px;" role="alert" th:text="${message}">error</div>
+    </div>
+
+
+    <div class="search-text">
+        SEARCH FOR A BOOK TITLE!
+    </div>
+
+    <div class="search-bar">
+        <form action="/books/search" method="GET">
+            <div class="search-input">
+                <input type="text" name="query" placeholder="Search..." autocomplete="off">
+                <button type="button" class="filter-toggle-button">Filter Options</button>
+                <button type="submit" class="search-button"onclick="showResultBox()">Search</button>
+            </div>
+            <div class="filter-options">
+                <label for="genre">Genre:</label>
+                <select id="genre" name="genre">
+                    <option value="any">Any</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="drama">Drama</option>
+                    <option value="crime">Crime</option>
+                    <option value="Dystopian">Dystopian</option>
+                    <option value="Romance">Romance</option>
+                    <!-- Add more genre options as needed -->
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="card" id="resultBox" style="display: block; background-color: #003E78;">
+        <div class="product" th:each = "book : ${books}">
+            <img th:src="'/images/book_covers/' + ${book.getCover()}"/>
+            <h3 id="booktitle" th:text="${book.getTitle()}"></h3>
+            <p th:text="${book.getDescription()}"></p>
+            <h3 th:text="'by: ' + ${book.getAuthor()}"></h3>
+        </div>
+    </div>
+
+</body>
+</html>

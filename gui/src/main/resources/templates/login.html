@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<html>
+    <head>
+        <title>Login Page</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Kanit:wght@300&family=Lily+Script+One&family=Poppins:wght@100;300;500;600&family=Quicksand:wght@500&family=Raleway:wght@300&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="resources/favicon.ico">
+        <link rel="stylesheet" href="/css/glass.css">
+    </head>
+
+    <body>
+
+        <div class="alert-container" th:if="${message != null}">
+            <div class="alert alert-danger text-center message" style= "top:100px;" role="alert" th:text="${message}">error</div>
+        </div>
+
+        <div class="container">
+            <div class="info">
+                <h3>Welcome to BiblioTech</h3>
+                <br>
+                <h5>--- Log in ---</h5>
+                <form action="/login/validate" method="POST">
+                    <input type="text" name="username" placeholder="username" required>
+                    <input type="password" name="password" placeholder="password" required>
+
+
+                    <button type="sumbit">LOG IN</button>
+                </form>
+
+                <hr>
+                <h6><a href="/register">Don't have an account? Register here!</a></h6>
+            </div>
+        </div>
+
+    </body>
+</html>
