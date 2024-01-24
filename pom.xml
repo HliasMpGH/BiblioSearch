@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <build>
-        <finalName>UniTED</finalName>
+        <finalName>BiblioSearch</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
