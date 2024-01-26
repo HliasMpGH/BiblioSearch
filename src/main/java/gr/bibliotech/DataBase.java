@@ -1,64 +1,126 @@
 package gr.bibliotech;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
 
 public class DataBase {
 
     public static Connection getNewConnection() {
 
         Connection connection = null;
-        String url = "jdbc:sqlite:database.db";
+        String url = "jdbc:sqlite:generated-sources/database.db";
 
         try {
             Class.forName("org.sqlite.JDBC");
             connection = DriverManager.getConnection(url);
             System.out.println("Connection is successful!");
 
-        } catch (SQLException e) {
-            throw new RuntimeException("Error connecting to the database.");
         } catch (Exception e) {
-            throw new RuntimeException(e.getMessage());
+            throw new RuntimeException("Error connecting to the database.");
         }
 
         return connection;
     }
 
-    public static void main(String[] arsg) {
-        Properties properties = PropertyHandler.getConfig();
+    /**
+     * Creates the empty database
+     * used by the platform
+     */
+    public static String create() {
+        Connection connection = getNewConnection();
 
-        System.out.println("App Name:");
-        System.out.println(properties.getProperty("app.name"));
-        System.out.println("App Version:");
-        System.out.println(properties.getProperty("app.version"));
-        System.out.println("App Creator:");
-        System.out.println(properties.getProperty("app.developer"));
-        System.out.println("CLI Property:");
-        System.out.println(System.getenv("SECRET_KEY"));
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader("generated-sources/tableCreation.sql"))) {
 
+            StringBuilder create = new StringBuilder();
 
-        /*
-        Connection connection = enableConnection();
-
-        String query = "Select * from Users";
-
-        try (Statement stm = connection.createStatement()) {
-            ResultSet rs = stm.executeQuery(query);
-            System.out.println("CURRENT DATA");
-            while (rs.next()) {
-                
-            }
-
+            reader.lines()
+                        .map(line -> line + "\n")
+                        .forEach(create::append);
+            
+            Statement stm = connection.createStatement();
+            
+            stm.executeUpdate(create.toString()); // execute the creation
+            stm.close();
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
+          //  throw new RuntimeException(e.getMessage());
+            //throw new RuntimeException("An Error Occured During Creation of DataBase");
+        } finally {
+            close(connection);
         }
-        System.out.println("done!");
-        */
+        return "";
+    }
+
+    /**
+     * Initializes the empty database
+     * with the data used by the platform
+     */
+    public static void init() {
+        Connection connection = getNewConnection();
+
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader("generated-sources/tableFill.sql"))) {
+
+            StringBuilder fill = new StringBuilder();
+
+            reader.lines()
+                        .map(line -> line + "\n")
+                        .forEach(fill::append);
+            
+            Statement stm = connection.createStatement();
+            
+            stm.executeUpdate(fill.toString()); // execute the creation
+            stm.close();
+        } catch (Exception e) {
+            throw new RuntimeException("An Error Occured During Initialization of DataBase");
+        } finally {
+            close(connection);
+        }
+    }
+
+    /**
+     * Drops the database along its data
+     */
+    public static void drop() {
+        Connection connection = getNewConnection();
+
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader("generated-sources/tableDrop.sql"))) {
+
+            StringBuilder drop = new StringBuilder();
+            
+            reader.lines()
+                        .map(line -> line + "\n")
+                        .forEach(drop::append);
+
+            Statement stm = connection.createStatement();
+            
+            int update = stm.executeUpdate(drop.toString()); // execute the drop
+            stm.close();
+
+            System.out.println(update + " tables dropped");
+        } catch (Exception e) {
+            throw new RuntimeException("An Error Occured During Destruction of DataBase");
+        }  finally {
+            close(connection);
+        }
+    }
+
+    /**
+     * Closes the Connection to the Database
+     */
+    public static void close(Connection connection) {
+        try {
+            if (connection != null) {
+                connection.close();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("An Error Occured During Internal Transmission");
+        }
     }
 }
