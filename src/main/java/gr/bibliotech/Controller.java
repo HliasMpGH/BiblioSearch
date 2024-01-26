@@ -1,25 +1,24 @@
 package gr.bibliotech;
 
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
+@ComponentScan("gr.bibliotech")
+@RequestMapping("books")
 public class Controller {
 
-    @GetMapping("/profile/{userid}")
-    public String handleGET(@PathVariable int userid) {
-        if (userid == 1) {
-            return DataBase.create();
-        } else if (userid == 2) {
-            DataBase.init();
-            return "all OK!";
-        } else {
-            DataBase.drop();
-            return "all OK!";
-        }
+    @GetMapping("/search")
+    public String showSearchPage(@RequestParam("query") String query) {
+
+        return "bookSearch.html";
     }
 
     @PostMapping("")
