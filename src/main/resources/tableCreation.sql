@@ -11,7 +11,7 @@ DROP TABLE Book;
 DROP TABLE User;
 */
 
-CREATE TABLE User (
+CREATE TABLE IF EXISTS User (
 	idUser INT AUTO_INCREMENT,
     username VARCHAR(45) NOT NULL UNIQUE,
     email VARCHAR(45) NOT NULL UNIQUE,
@@ -20,7 +20,7 @@ CREATE TABLE User (
     PRIMARY KEY(idUser)
 );
 
-CREATE TABLE Book (
+CREATE TABLE IF EXISTS Book (
 	ISBN VARCHAR(45),
     title VARCHAR(45) NOT NULL UNIQUE,
     author VARCHAR(45) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE Book (
     PRIMARY KEY (ISBN)
 );
 
-CREATE TABLE BookClub (
+CREATE TABLE IF EXISTS BookClub (
 	idClub INT AUTO_INCREMENT,
     name VARCHAR(45) NOT NULL UNIQUE,
     about VARCHAR(250), 
@@ -44,7 +44,7 @@ CREATE TABLE BookClub (
     FOREIGN KEY (creator) REFERENCES user(idUser)
 );
 
-CREATE TABLE Forum (
+CREATE TABLE IF EXISTS Forum (
 	idForum INT AUTO_INCREMENT,
     title VARCHAR(45) NOT NULL,
     creator INT NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE Forum (
     FOREIGN KEY (creator) REFERENCES user(idUser)
 );
 
-CREATE TABLE HasBook (
+CREATE TABLE IF EXISTS HasBook (
 	idUser INT,
     ISBN VARCHAR(45),
     copyType VARCHAR(45) NOT NULL,
@@ -64,7 +64,7 @@ CREATE TABLE HasBook (
     FOREIGN KEY (ISBN) REFERENCES book(ISBN)
 );
 
-CREATE TABLE Message (
+CREATE TABLE IF EXISTS Message (
 	idMessage int AUTO_INCREMENT,
     text VARCHAR(144) NOT NULL,
     senderID int NOT NULL,
@@ -72,7 +72,7 @@ CREATE TABLE Message (
     PRIMARY KEY(idMessage),
     FOREIGN KEY(senderID) REFERENCES User(idUser)
 );
-CREATE TABLE BookClubMessage (
+CREATE TABLE IF EXISTS BookClubMessage (
 	idMessage int,
     idClub int NOT NULL,
     PRIMARY KEY (idMessage),
@@ -80,7 +80,7 @@ CREATE TABLE BookClubMessage (
     FOREIGN KEY (idClub) REFERENCES BookClub(idClub)
 );
 
-CREATE TABLE ForumMessage (
+CREATE TABLE IF EXISTS ForumMessage (
 	idMessage int,
     idForum int NOT NULL,
     spoilerFlag BOOLEAN DEFAULT FALSE,
@@ -89,7 +89,7 @@ CREATE TABLE ForumMessage (
     FOREIGN KEY (idForum) REFERENCES Forum(idForum)
 );
 
-CREATE TABLE BookExchange (
+CREATE TABLE IF EXISTS BookExchange (
 	idUser1 INT,
     idUser2 INT AUTO_INCREMENT,
     isbnBook1 VARCHAR(45),
@@ -102,7 +102,7 @@ CREATE TABLE BookExchange (
     FOREIGN KEY (isbnBook2) REFERENCES Book(ISBN)
 );
 
-CREATE TABLE BookClubRegistration (
+CREATE TABLE IF EXISTS BookClubRegistration (
 	idUser int,
     idClub int,
     PRIMARY KEY (idUser, idClub),
@@ -110,7 +110,7 @@ CREATE TABLE BookClubRegistration (
     FOREIGN KEY (idClub) REFERENCES BookClub(idClub)
 );
 
-create table lookingToExchange (
+create TABLE IF EXISTS lookingToExchange (
 	idRequest INT AUTO_INCREMENT,
 	idUser INT NOT NULL,
 	fromBookISBN VARCHAR(45) NOT NULL,
@@ -123,7 +123,7 @@ create table lookingToExchange (
     FOREIGN KEY (toBookISBN) REFERENCES book(ISBN)
 );
 
-create table exchangeActions (
+create TABLE IF EXISTS exchangeActions (
 	idRequest INT,
     actn BOOLEAN,
 	idUser INT NOT NULL,

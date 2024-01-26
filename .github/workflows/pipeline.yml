@@ -20,7 +20,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build
-      run: mvn -B package --file pom.xml
+      run: mvn -B install --file pom.xml
     - name: Execute Jar
       run: java -jar target/BiblioSearch.jar
       env:
