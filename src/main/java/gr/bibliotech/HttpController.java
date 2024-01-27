@@ -1,22 +1,30 @@
 package gr.bibliotech;
 
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.ui.Model;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
 
 
-@RestController
+@Controller
 @ComponentScan("gr.bibliotech")
 @RequestMapping("books")
-public class Controller {
+public class HttpController {
+
+    @GetMapping("")
+    public String showSearchPage() {
+        return "bookSearch.html";
+    }
 
     @GetMapping("/search")
-    public String showSearchPage(@RequestParam("query") String query) {
+    public String showResults(@RequestParam("query") String query,
+                              @RequestParam("filter") String filter,
+                              @RequestParam("genre") String genre,
+                              Model model) {
 
         return "bookSearch.html";
     }

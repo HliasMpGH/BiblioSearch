@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Search Books</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Antic+Didone&family=Kanit:wght@300&family=Lily+Script+One&family=Poppins:wght@100;300;500;600&family=Quicksand:wght@500&family=Raleway:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="resources/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/searchStyle.css">
+    <script src="/javascript/searching.js"></script>
+</head>
+
+<body>
+<!--
+   <jsp:include page="navbar.jsp" />
+
+   <% if(request.getAttribute("Gmessage") != null) {  %>	
+
+        <div class="alert-container">
+            <div class="alert alert-success text-center message" style= "top:100px;" role="alert"><%=(String)request.getAttribute("Gmessage") %></div>
+        </div>
+
+<% 
+        request.setAttribute("results", Book.getBooks());
+    } else if (request.getAttribute("Bmessage") != null) {
+        request.setAttribute("results", Book.getBooks());
+%>
+
+        <div class="alert-container">
+            <div class="alert alert-danger text-center message" style= "top:100px;" role="alert"><%=(String)request.getAttribute("Bmessage") %></div>
+        </div>
+
+    <% } %>
+-->
+
+    <div class="search-text">
+        SEARCH FOR A BOOK TITLE!
+    </div>
+
+    <div class="search-bar">
+        <form action="/books/search" method="GET">
+            <div class="search-input">
+                <input type="text" name="query" placeholder="Search..." autocomplete="off">
+                <button type="button" class="filter-toggle-button">Filter Options</button>
+                <button type="submit" class="search-button"onclick="showResultBox()">Search</button>
+            </div>
+            <div class="filter-options">
+                <label for="filter">Filter by:</label>
+                <select id="filter" name="filter">
+                    <option value="none">None</option>
+                    <option value="customized">Customized</option>
+                    <option value="popular">Most Popular</option>
+                </select>
+                <label for="genre">Genre:</label>
+                <select id="genre" name="genre">
+                    <option value="any">Any</option>
+                    <option value="adventure">Adventure</option>
+                    <option value="drama">Drama</option>
+                    <option value="crime">Crime</option>
+                    <option value="Dystopian">Dystopian</option>
+                    <option value="Romance">Romance</option>
+                    <!-- Add more genre options as needed -->
+                </select>
+            </div>
+        </form>
+    </div>
+
+    <div class="card" id="resultBox" style="display: block; background-color: #003E78;">
+<!--
+<%
+        
+        List<Book> books = (List<Book>) request.getAttribute("results");
+        if (books != null) {
+            for (Book book : books) {
+%>
+                <div class="product">
+                    <img src=<%=book.getCover()%>>
+                    <h3 id="booktitle"><%=book.getTitle()%></h3>
+                    <p><%=book.getDescription()%></p>
+                    <h3>Availability: <%=book.getNoCopies()%></h3>
+                    <div class="button-container">
+                        <button class="add-button" onclick="toggleProductOptions(this)">Add</button>
+                        <a href="bookexchange.jsp?wantedBookID=<%=book.getISBN()%>"><button class="details-button">Exchange</button></a>
+                    </div>
+                    <div class="product-options" style="display: none;">
+                        <form action="addbookController.jsp">
+                            <label for="product-filter">Book Type:</label>
+                            <select id="product-filter" name="type">
+                                <option value="physical">Physical</option>
+                                <option value="online">Online</option>
+                            </select>
+                            <input type="hidden" name="bookID" value="<%=book.getISBN()%>">
+                            <input type="submit" value="Submit" style="background-color: #003E78; color: #fff;">
+                        </form>
+                    </div>
+                </div>
+<%
+            }
+        }
+%>
+-->
+</body>
+
+</html>
