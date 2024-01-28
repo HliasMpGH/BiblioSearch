@@ -21,7 +21,10 @@ jobs:
         cache: maven
     - name: Build
       run: mvn -B install --file pom.xml
+
+      '''
     - name: Execute Jar
       run: java -jar target/BiblioSearch.jar
       env:
         SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      '''
