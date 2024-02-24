@@ -49,7 +49,8 @@ public class PropertyHandler {
     /**
      * Retrieves a configurations' int value; based on a given key
      * @param key a configuration key of an integer value
-     * @return the value of said configuration or -1
+     * @return the value of said configuration or -1 if
+     * said value is not of int value
      */
     public static int getIntProperty(String key) {
         try {

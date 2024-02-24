@@ -61,7 +61,7 @@ public class Server {
     }
 
     /**
-     * Opens the Connection
+     * Opens the Connection in the default browser
      * @return true if the server is running; false otherwise
      */
     public static boolean open() {

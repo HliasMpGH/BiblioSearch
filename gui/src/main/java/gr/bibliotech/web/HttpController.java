@@ -26,7 +26,7 @@ public class HttpController {
     }
 
     /**
-     * Configures GET requests upon user
+     * Configures GET requests upon user search
      * interaction. Presents results of the
      * requests.
      */
