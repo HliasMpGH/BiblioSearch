@@ -83,10 +83,15 @@ public class App extends Application {
             }
 
             setButtonsStatus(false); // dont allow user interaction during boot up of server
+
+            logServerLoadingStatus(); // log a loading status
+
             if (!Server.start()) {
                 logWarning("Server is Already Running");
             }
             setButtonsStatus(true);
+
+            logTextln("Server Started");
 
             if (Server.isLive()) {
                 // update visual of status
@@ -151,9 +156,14 @@ public class App extends Application {
      * @param warning the warning message to log
      */
     public static void logWarning(String warning) {
-        Text text = new Text(warning);
-        text.setFill(Color.RED);; // Setting the text color to red
-        logTextln(text.getText());
+        logTextln(warning);
+    }
+
+    /**
+     * Logs a loading screen to the UI.
+     */
+    public static void logServerLoadingStatus() {
+        App.logText("Loading...\n");
     }
 
     /** 

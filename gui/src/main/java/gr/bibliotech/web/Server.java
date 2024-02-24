@@ -36,7 +36,6 @@ public class Server {
      */
     public static boolean start() {
         if (!running) {
-            logLoadingScreen(); // log a loading status
             try {
                 ctx = SpringApplication.run(Server.class, ""); // override CLI arguments
                 return running = true;
@@ -90,13 +89,6 @@ public class Server {
         } catch (IOException e) {
             return false;
         }
-    }
-
-    /**
-     * Logs a loading screen to the UI.
-     */
-    public static void logLoadingScreen() {
-        App.logText("Loading...");
     }
 
     /**
