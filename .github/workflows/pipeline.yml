@@ -20,5 +20,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build
-      run: mvn -B install --file pom.xml
+      run: mvn -B install --file gui/pom.xml
     
