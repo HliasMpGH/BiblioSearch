@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <comment>general and technical attributes</comment>
+
+    <entry key="app.name">BiblioSearch</entry>
+    <entry key="app.version">2.0</entry>
+    <entry key="app.creator">Hlias Mpourdakos</entry>
+    <entry key="app.date">TO BE</entry>
+
+
+    <entry key="app.protocol">http</entry>
+    <entry key="app.host">localhost</entry>
+    <entry key="app.port">8080</entry>
+    <entry key="app.main">books</entry>
+    <entry key="app.location">http://localhost:8080/books</entry>
+
+    <entry key="app.handler.name">Local Server Handler</entry>
+    <entry key="app.handler.img">/static/images/app_icons/cloud_library.png</entry>
+</properties>

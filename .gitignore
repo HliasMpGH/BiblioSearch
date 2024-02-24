@@ -1,4 +1,6 @@
 # ignore files
 target
-database.db
 .vscode
+
+# application private configs
+*.properties
