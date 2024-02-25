@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.google.common.hash.Hashing;
+import java.nio.charset.StandardCharsets;
+
 import gr.bibliotech.app.User;
 
 @Repository
@@ -65,13 +68,12 @@ public class UserDAO {
      * @return the user that matches the username & password association
      */
     public User authenticate(String username, String password) {
-        String passwordHash; // the given hash
 
 
         String query = "SELECT * FROM USERS WHERE " +
                         "username = ? AND email = ?";
 
-        User user = jdbcTemplate.queryForObject(query, new UserMapper(), username, password);
+        User user = jdbcTemplate.queryForObject(query, new UserMapper(), username, getHash(password));
 
         if (user != null) {
             return user;
@@ -94,5 +96,18 @@ public class UserDAO {
         User user = jdbcTemplate.queryForObject(query, new UserMapper(), id);
 
         return user;
+    }
+
+    /**
+     * Used to Hash a String.
+     * Should be used when handling sensitive data.
+     *
+     * @param string the String to be hashed
+     * @return the hash value of the String
+     */
+    public static String getHash(String string) {
+            return Hashing.sha256()
+                    .hashString(string, StandardCharsets.UTF_8)
+                    .toString();
     }
 }

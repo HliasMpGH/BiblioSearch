@@ -1,6 +1,5 @@
 package gr.bibliotech.app;
 
-import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +9,6 @@ import java.sql.Date;
 import java.util.List;
 
 
-//import com.google.common.hash.Hashing;
 
 
 /**
@@ -67,17 +65,4 @@ public class User {
     /*
      * No Setters Allowed
      */
-
-    /**
-     * Used to Hash a String.
-     * Should be used when handling sensitive data.
-     * 
-     * @param string the String to be hashed
-     * @return the hash value of the String
-     
-    public static String getHash(String string) {
-            return Hashing.sha256()
-                    .hashString(string, StandardCharsets.UTF_8)
-                    .toString();
-    }*/
 }
