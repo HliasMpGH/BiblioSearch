@@ -25,7 +25,6 @@ public class BookDAO {
     /**
      * Retrives the Registered Books from the Data Base
      * @return a list of books
-     * @throws Exception if the DB connection experiences any issues
      */
     public List<Book> getBooks() {
         List<Book> books = jdbcTemplate.query("SELECT * FROM BOOKS", new BookMapper());

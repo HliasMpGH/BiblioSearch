@@ -15,7 +15,7 @@ import gr.bibliotech.data.BookDAO;
 @Controller
 @ComponentScan("gr.bibliotech")
 @RequestMapping("books")
-public class HttpController {
+public class SearchController {
 
     /**
      * The Main Search Page.
@@ -50,5 +50,15 @@ public class HttpController {
         }
 
         return "bookSearch.html";
+    }
+
+    /**
+     * Configures GET requests upon user search
+     * interaction. Presents results of the
+     * requests.
+     */
+    @GetMapping("/register")
+    public String showResults() {
+        return "register.html";
     }
 }
