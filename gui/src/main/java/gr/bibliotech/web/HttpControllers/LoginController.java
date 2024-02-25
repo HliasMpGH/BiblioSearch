@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 import gr.bibliotech.app.Book;
 import gr.bibliotech.data.BookDAO;
+import gr.bibliotech.data.UserDAO;
 
 @Controller
 @ComponentScan("gr.bibliotech")
@@ -44,8 +45,18 @@ public class LoginController {
                               @RequestParam("password") String password,
                               Model model) {
 
+        UserDAO userBean = Server.getInstance().getBean(UserDAO.class);
+
         // validate users' credentials
-        return "bookSearch.html";
+        try {
+            userBean.authenticate(username, password);
+            return "bookSearch.html";
+        } catch (Exception e) {
+
+            // no user found
+            model.addAttribute("message", e.getMessage());
+            return "login.html";
+        }
     }
 
     /**
@@ -59,7 +70,29 @@ public class LoginController {
                               @RequestParam("email") String email,
                               Model model) {
 
+        UserDAO userBean = Server.getInstance().getBean(UserDAO.class);
+
         // validate users' credentials
+        if (!userBean.isValidUserName(username)) {
+            model.addAttribute("message",
+                "Invalid Username. Usernames Must be Longer than 8 Characters!");
+
+            return "register.html";
+        }
+
+        if (!userBean.isValidPassword(password)) {
+            model.addAttribute("message",
+                "Weak Password. Passwords Must Obey the Following rules:<br>" +
+                "must have two uppercase letters<br>" +
+                "must have one special case letter<br>" +
+                "must have two digits<br>" +
+                "must have three lowercase letters<br>" +
+                "is of length 8"
+            );
+
+            return "register.html";
+        }
+
         return "login.html";
     }
 }

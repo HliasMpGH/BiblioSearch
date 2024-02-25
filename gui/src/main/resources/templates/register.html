@@ -15,6 +15,10 @@
 
 <body>
 
+    <div class="alert-container" th:if="${message != null}">
+        <div class="alert alert-danger text-center message" style= "top:100px;" role="alert" th:text="${message}">error</div>
+    </div>
+
     <div class="container">
             <div class="info">
                 <h3>Welcome to BiblioTech</h3>

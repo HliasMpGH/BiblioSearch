@@ -3,11 +3,15 @@ package gr.bibliotech.data;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.regex.Pattern;
+
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.dao.EmptyResultDataAccessException;
+
 
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
@@ -69,17 +73,15 @@ public class UserDAO {
      */
     public User authenticate(String username, String password) {
 
-
         String query = "SELECT * FROM USERS WHERE " +
                         "username = ? AND email = ?";
 
-        User user = jdbcTemplate.queryForObject(query, new UserMapper(), username, getHash(password));
-
-        if (user != null) {
+        try {
+            User user = jdbcTemplate.queryForObject(query, new UserMapper(), username, getHash(password));
             return user;
+        } catch (EmptyResultDataAccessException e) {
+            throw new RuntimeException("No Match Between Username and Password Found!");
         }
-
-        throw new RuntimeException("No Such User!");
     }
 
     /**
@@ -93,9 +95,34 @@ public class UserDAO {
     public User getUser(int id) {
         String query = "SELECT * FROM USERS WHERE idUser = ?";
 
-        User user = jdbcTemplate.queryForObject(query, new UserMapper(), id);
+        try {
+            User user = jdbcTemplate.queryForObject(query, new UserMapper(), id);
+            return user;
+        } catch (EmptyResultDataAccessException e) {
+            throw new RuntimeException("The ID " + id + "Could not be Resolved to a User");
+        }
+    }
 
-        return user;
+    public boolean isValidUserName(String username) {
+        if (username != null) {
+            return username.trim().length() > 4;
+        }
+        return false;
+    }
+
+    public boolean isValidEmail(String email) {
+        // empty for now
+        return true;
+    }
+
+    public boolean isValidPassword(String password) {
+        String strongPWregex = "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])" +
+                               "(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*" +
+                               "[a-z]).{8}$";
+
+        Pattern strongPassword = Pattern.compile(strongPWregex);
+
+        return strongPassword.matcher(password).matches();
     }
 
     /**
