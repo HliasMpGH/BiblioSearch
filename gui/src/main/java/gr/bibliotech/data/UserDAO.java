@@ -125,6 +125,42 @@ public class UserDAO {
         return strongPassword.matcher(password).matches();
     }
 
+    public void validateUsername(String username) {
+        if (!isValidUserName(username)) {
+            throw new RuntimeException("Invalid Username. " +
+                "Usernames Must be Longer than 8 Characters!");
+        }
+
+        if (existsUserName(username)) {
+            throw new RuntimeException("The username You Provided Already Exists! " +
+                "Please Choose a Different One!");
+        }
+    }
+
+    public void validatePassword(String password) {
+        if (!isValidPassword(password)) {
+            throw new RuntimeException(
+                "Weak Password. Passwords Must Obey the Following rules:<br>" +
+                "must have two uppercase letters<br>" +
+                "must have one special case letter<br>" +
+                "must have two digits<br>" +
+                "must have three lowercase letters<br>" +
+                "is of length 8"
+            );
+        }
+    }
+
+    public void validateEmail(String email) {
+        if (!isValidEmail(email)) {
+            throw new RuntimeException("Email is not Valid.");
+        }
+
+        if (existsUserMail(email)) {
+            throw new RuntimeException("The email You Provided Already Exists! " +
+                "Please Choose a Different One!");
+        }
+    }
+
     /**
      * Used to Hash a String.
      * Should be used when handling sensitive data.

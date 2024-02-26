@@ -50,6 +50,8 @@ public class LoginController {
         // validate users' credentials
         try {
             userBean.authenticate(username, password);
+
+            // valid credentials; redirect to search
             return "bookSearch.html";
         } catch (Exception e) {
 
@@ -73,28 +75,20 @@ public class LoginController {
         UserDAO userBean = Server.getInstance().getBean(UserDAO.class);
 
         // validate users' credentials
+        try {
+            userBean.validateUsername(username);
 
-        if (!userBean.isValidUserName(username)) {
-            model.addAttribute("message",
-                "Invalid Username. Usernames Must be Longer than 8 Characters!");
+            userBean.validatePassword(password);
 
+            userBean.validateEmail(email);
+        } catch (Exception e) {
+            model.addAttribute("message", e.getMessage());
+
+            // invalid info; redirect to register
             return "register.html";
         }
 
-        if (!userBean.isValidPassword(password)) {
-            model.addAttribute("message",
-                "Weak Password. Passwords Must Obey the Following rules:<br>" +
-                "must have two uppercase letters<br>" +
-                "must have one special case letter<br>" +
-                "must have two digits<br>" +
-                "must have three lowercase letters<br>" +
-                "is of length 8"
-            );
-
-            return "register.html";
-        }
-
-        // user is verified; show the login page
+        // valid credentials; redirect to login
         return "login.html";
     }
 }
