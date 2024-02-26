@@ -88,10 +88,11 @@ public class App extends Application {
 
             if (!Server.start()) {
                 logWarning("Server is Already Running");
+            } else {
+                logTextln("Server Started");
             }
-            setButtonsStatus(true);
 
-            logTextln("Server Started");
+            setButtonsStatus(true);
 
             if (Server.isLive()) {
                 // update visual of status
