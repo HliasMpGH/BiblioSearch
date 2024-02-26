@@ -81,7 +81,7 @@ public class LoginController {
             userBean.validateUsername(username);
 
             // password
-            userBean.validatePassword(password);
+        //    userBean.validatePassword(password);
 
             //email
             userBean.validateEmail(email);
@@ -92,7 +92,12 @@ public class LoginController {
             return "register.html";
         }
 
-        // valid credentials; redirect to login
+        // valid credentials
+
+        // register the user
+        userBean.registerUser(username, email, password);
+
+        // redirect to login
         return "login.html";
     }
 }

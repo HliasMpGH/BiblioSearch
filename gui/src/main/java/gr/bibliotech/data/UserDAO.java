@@ -75,14 +75,22 @@ public class UserDAO {
     public User authenticate(String username, String password) {
 
         String query = "SELECT * FROM USERS WHERE " +
-                        "username = ? AND email = ?";
+                        "username = ? AND password = ?";
 
         try {
-            User user = jdbcTemplate.queryForObject(query, new UserMapper(), username, getHash(password));
+            User user = jdbcTemplate.queryForObject(query, new UserMapper(), username, getHash(password)); // check if the hashes match
             return user;
         } catch (EmptyResultDataAccessException e) {
             throw new RuntimeException("No Match Between Username and Password Found!");
         }
+    }
+
+    public void registerUser(String username, String email, String password) {
+
+        String insert = "INSERT INTO USERS(username, email, password) " +
+                        "VALUES (?, ?, ?)";
+
+        jdbcTemplate.update(insert, username, email, getHash(password)); // insert the hash of the password
     }
 
     /**
