@@ -53,7 +53,7 @@ public class LoginController {
             return "bookSearch.html";
         } catch (Exception e) {
 
-            // no user found
+            // no user found with these credentials
             model.addAttribute("message", e.getMessage());
             return "login.html";
         }
@@ -73,6 +73,7 @@ public class LoginController {
         UserDAO userBean = Server.getInstance().getBean(UserDAO.class);
 
         // validate users' credentials
+
         if (!userBean.isValidUserName(username)) {
             model.addAttribute("message",
                 "Invalid Username. Usernames Must be Longer than 8 Characters!");
@@ -93,6 +94,7 @@ public class LoginController {
             return "register.html";
         }
 
+        // user is verified; show the login page
         return "login.html";
     }
 }
