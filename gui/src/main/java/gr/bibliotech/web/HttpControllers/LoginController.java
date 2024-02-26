@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
+import gr.bibliotech.ErrorHandlers.InvalidInfoException;
 import gr.bibliotech.app.Book;
 import gr.bibliotech.data.BookDAO;
 import gr.bibliotech.data.UserDAO;
@@ -76,12 +77,15 @@ public class LoginController {
 
         // validate users' credentials
         try {
+            // username
             userBean.validateUsername(username);
 
+            // password
             userBean.validatePassword(password);
 
+            //email
             userBean.validateEmail(email);
-        } catch (Exception e) {
+        } catch (InvalidInfoException e) {
             model.addAttribute("message", e.getMessage());
 
             // invalid info; redirect to register

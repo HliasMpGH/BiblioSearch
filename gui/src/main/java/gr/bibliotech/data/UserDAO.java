@@ -16,6 +16,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
 
+import gr.bibliotech.ErrorHandlers.InvalidInfoException;
 import gr.bibliotech.app.User;
 
 @Repository
@@ -127,37 +128,38 @@ public class UserDAO {
 
     public void validateUsername(String username) {
         if (!isValidUserName(username)) {
-            throw new RuntimeException("Invalid Username. " +
-                "Usernames Must be Longer than 8 Characters!");
+            throw new InvalidInfoException("Invalid Username. " +
+                "Usernames Must be Longer than 8 Characters!", "Username");
         }
 
         if (existsUserName(username)) {
-            throw new RuntimeException("The username You Provided Already Exists! " +
-                "Please Choose a Different One!");
+            throw new InvalidInfoException("The username You Provided Already Exists! " +
+                "Please Choose a Different One!", "Username");
         }
     }
 
     public void validatePassword(String password) {
         if (!isValidPassword(password)) {
-            throw new RuntimeException(
+            throw new InvalidInfoException(
                 "Weak Password. Passwords Must Obey the Following rules:<br>" +
                 "must have two uppercase letters<br>" +
                 "must have one special case letter<br>" +
                 "must have two digits<br>" +
                 "must have three lowercase letters<br>" +
-                "is of length 8"
+                "is of length 8",
+                "Password"
             );
         }
     }
 
     public void validateEmail(String email) {
         if (!isValidEmail(email)) {
-            throw new RuntimeException("Email is not Valid.");
+            throw new InvalidInfoException("Email is not Valid.", "Email");
         }
 
         if (existsUserMail(email)) {
-            throw new RuntimeException("The email You Provided Already Exists! " +
-                "Please Choose a Different One!");
+            throw new InvalidInfoException("The email You Provided Already Exists! " +
+                "Please Choose a Different One!", "Email");
         }
     }
 
