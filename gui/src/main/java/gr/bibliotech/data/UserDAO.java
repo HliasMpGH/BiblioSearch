@@ -78,40 +78,37 @@ public class UserDAO {
                         "username = ? AND password = ?";
 
         try {
-            User user = jdbcTemplate.queryForObject(query, new UserMapper(), username, getHash(password)); // check if the hashes match
+            User user = jdbcTemplate.queryForObject(
+                query,
+                new UserMapper(),
+                username,
+                getHash(password)  // check if the hashes match
+            );
             return user;
         } catch (EmptyResultDataAccessException e) {
             throw new RuntimeException("No Match Between Username and Password Found!");
         }
     }
 
+    /**
+     * Registers a new user in the DB
+     * @param username new users' username
+     * @param email new users' email
+     * @param password new users' password
+     */
     public void registerUser(String username, String email, String password) {
 
         String insert = "INSERT INTO USERS(username, email, password) " +
                         "VALUES (?, ?, ?)";
 
-        jdbcTemplate.update(insert, username, email, getHash(password)); // insert the hash of the password
+        jdbcTemplate.update(insert, username, email, getHash(password)); // save the hash of the password
     }
 
     /**
-     * Returns the User with Said ID.
-     * Useful for Associations Between Data
-     * @param id the id of the user to return
-     * @return the User with Said id
-     * @throws Exception if a match between a user and the ID 
-     * could not be resolved
+     * Checks a usernames' spell validity
+     * @param username the username to check
+     * @return true if its valid; false otherwise
      */
-    public User getUser(int id) {
-        String query = "SELECT * FROM USERS WHERE idUser = ?";
-
-        try {
-            User user = jdbcTemplate.queryForObject(query, new UserMapper(), id);
-            return user;
-        } catch (EmptyResultDataAccessException e) {
-            throw new RuntimeException("The ID " + id + "Could not be Resolved to a User");
-        }
-    }
-
     public boolean isValidUserName(String username) {
         if (username != null) {
             return username.trim().length() > 4;
@@ -119,11 +116,11 @@ public class UserDAO {
         return false;
     }
 
-    public boolean isValidEmail(String email) {
-        // empty for now
-        return true;
-    }
-
+    /**
+     * Checks a passwords' strength
+     * @param password the password to check
+     * @return true if the password is strong; flase otherwise
+     */
     public boolean isValidPassword(String password) {
         String strongPWregex = "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])" +
                                "(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*" +
@@ -134,6 +131,11 @@ public class UserDAO {
         return strongPassword.matcher(password).matches();
     }
 
+    /**
+     * Validates a username
+     * @param username
+     * @throws InvalidInfoException if the username is not valid
+     */
     public void validateUsername(String username) {
         if (!isValidUserName(username)) {
             throw new InvalidInfoException("Invalid Username. " +
@@ -146,25 +148,31 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Validates a password
+     * @param password
+     * @throws InvalidInfoException if the password is not valid
+     */
     public void validatePassword(String password) {
         if (!isValidPassword(password)) {
             throw new InvalidInfoException(
-                "Weak Password. Passwords Must Obey the Following rules:<br>" +
-                "must have two uppercase letters<br>" +
-                "must have one special case letter<br>" +
-                "must have two digits<br>" +
-                "must have three lowercase letters<br>" +
-                "is of length 8",
+                "Weak Password. Passwords Must Obey the Following rules:" +
+                "must have two uppercase letters." +
+                "must have one special case letter." +
+                "must have two digits." +
+                "must have three lowercase letters." +
+                "is of length 8.",
                 "Password"
             );
         }
     }
 
+    /**
+     * Validates an email
+     * @param email
+     * @throws InvalidInfoException if the email is not valid
+     */
     public void validateEmail(String email) {
-        if (!isValidEmail(email)) {
-            throw new InvalidInfoException("Email is not Valid.", "Email");
-        }
-
         if (existsUserMail(email)) {
             throw new InvalidInfoException("The email You Provided Already Exists! " +
                 "Please Choose a Different One!", "Email");

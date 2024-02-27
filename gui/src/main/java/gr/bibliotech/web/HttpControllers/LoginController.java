@@ -17,7 +17,6 @@ import gr.bibliotech.data.UserDAO;
 
 @Controller
 @ComponentScan("gr.bibliotech")
-@RequestMapping("details")
 public class LoginController {
 
     /**
@@ -53,7 +52,7 @@ public class LoginController {
             userBean.authenticate(username, password);
 
             // valid credentials; redirect to search
-            return "bookSearch.html";
+            return "redirect:/books";
         } catch (Exception e) {
 
             // no user found with these credentials
@@ -81,9 +80,9 @@ public class LoginController {
             userBean.validateUsername(username);
 
             // password
-        //    userBean.validatePassword(password);
+            userBean.validatePassword(password);
 
-            //email
+            // email
             userBean.validateEmail(email);
         } catch (InvalidInfoException e) {
             model.addAttribute("message", e.getMessage());
@@ -98,6 +97,6 @@ public class LoginController {
         userBean.registerUser(username, email, password);
 
         // redirect to login
-        return "login.html";
+        return "redirect:/login";
     }
 }

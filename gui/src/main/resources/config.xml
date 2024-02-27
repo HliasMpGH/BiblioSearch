@@ -13,7 +13,7 @@
     <entry key="app.host">localhost</entry>
     <entry key="app.port">8080</entry>
     <entry key="app.main">books</entry>
-    <entry key="app.location">http://localhost:8080/books</entry>
+    <entry key="app.location">http://localhost:8080/register</entry>
 
     <entry key="app.handler.name">Local Server Handler</entry>
     <entry key="app.handler.img">/static/images/app_icons/cloud_library.png</entry>

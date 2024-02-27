@@ -32,14 +32,13 @@ public class SearchController {
      */
     @GetMapping("/search")
     public String showResults(@RequestParam("query") String query,
-                              @RequestParam("filter") String filter,
                               @RequestParam("genre") String genre,
                               Model model) {
 
         BookDAO bookBean = Server.getInstance().getBean(BookDAO.class);
 
         // get the books that match the specified criteria
-        List<Book> matchingBooks = bookBean.findBooks(query, filter, genre);
+        List<Book> matchingBooks = bookBean.findBooks(query, genre);
 
 
         // present the results, or an appropriate message in case of no results
