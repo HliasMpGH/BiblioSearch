@@ -6,7 +6,6 @@ This project represents a Spring Boot server application hosted locally, designe
 
 ## Requirements
 
-- Java 8 or higher
 - JavaFX
 - Maven
 - Spring Boot
