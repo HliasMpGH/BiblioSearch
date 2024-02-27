@@ -49,6 +49,6 @@ The use case presented streamlines the process of finding books by allowing user
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md).
+This project is licensed under the [GPL-2.0 License](LICENSE).
 
 ---
