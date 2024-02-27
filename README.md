@@ -36,7 +36,7 @@ This project represents a Spring Boot server application hosted locally, designe
     java -jar Local\ Server\ Handler-jar-with-dependencies.jar
     ```
 
-   The handler will communicate with the Spring Boot server and manage its functionalities.
+   The [handler](exe/Local%20Server%20Handler.exe) will communicate with the Spring Boot server and manage its functionalities.
 
 ## Local Server Handler
 
