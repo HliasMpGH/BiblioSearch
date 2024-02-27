@@ -52,3 +52,28 @@ The use case presented streamlines the process of finding books by allowing user
 This project is licensed under the [GPL-2.0 License](LICENSE).
 
 ---
+
+# Appreciation for UI Contributors
+
+Special thanks to following people for their exceptional help in crafting the UI of the use case. Their creativity and dedication have played a key role in shaping a user-friendly and visually appealing interface.
+
+
+# Appreciation for UI Contributors
+
+
+
+Special thanks to following individuals for their exceptional help in crafting the UI of the use case. Their creativity and dedication have played a key role in shaping a user-friendly and visually appealing interface.
+
+  
+
+-  **[Marina](https://github.com/MarinaGolf12)**
+
+
+
+
+-  **[Dimitris](https://github.com/dimitriospapathanasiou)**
+
+
+
+
+-  **[Maria](https://github.com/mariachrisochoou)**
