@@ -84,20 +84,18 @@ public class App extends Application {
 
             setButtonsStatus(false); // dont allow user interaction during boot up of server
 
-            logServerLoadingStatus(); // log a loading status
+            logTextln("Starting Server...");
 
             if (!Server.start()) {
                 logWarning("Server is Already Running");
             } else {
                 logTextln("Server Started");
-            }
 
-            setButtonsStatus(true);
-
-            if (Server.isLive()) {
                 // update visual of status
                 statusColor.setFill(Color.GREEN);
             }
+
+            setButtonsStatus(true);
         });
 
         // configure the server kill button
@@ -105,10 +103,8 @@ public class App extends Application {
             if (Server.stop()) {
                 logTextln("Server Stopped");
 
-                if (!Server.isLive()) {
-                    // update visual of status
-                    statusColor.setFill(Color.RED);
-                }
+                // update visual of status
+                statusColor.setFill(Color.RED);
             } else {
                 logWarning("Server is Not Running");
             }
@@ -158,13 +154,6 @@ public class App extends Application {
      */
     public static void logWarning(String warning) {
         logTextln(warning);
-    }
-
-    /**
-     * Logs a loading screen to the UI.
-     */
-    public static void logServerLoadingStatus() {
-        App.logText("Loading...\n");
     }
 
     /** 

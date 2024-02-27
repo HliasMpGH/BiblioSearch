@@ -53,7 +53,6 @@ public class Server {
     public static boolean stop() {
         if (running) {
             ctx.close();
-            ctx = null;
             return !(running = false);
         }
         return false;
