@@ -7,10 +7,10 @@ import java.util.Properties;
 public class PropertyHandler {
 
     // the file of apps' configurations
-    private static String propFileName = "config.xml";
+    private static String configFileName = "config.xml";
 
-    // the apps' properties
-    private static Properties prop = new Properties();
+    // the apps' configurations
+    private static Properties configs = new Properties();
 
     // the ClassLoader of this class, used for accessing properties
     private static ClassLoader loader = PropertyHandler.class.getClassLoader();
@@ -19,9 +19,9 @@ public class PropertyHandler {
     // init config memory upon application boot up
     static {
         if (loader != null) {
-            try (InputStream config = loader.getResourceAsStream(propFileName)) {
+            try (InputStream config = loader.getResourceAsStream(configFileName)) {
                 // load config file as a property
-                prop.loadFromXML(config);
+                configs.loadFromXML(config);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
@@ -34,7 +34,7 @@ public class PropertyHandler {
      * @return the config file of the app as a property
      */
     public static Properties getConfig() {
-        return prop;
+        return configs;
     }
 
     /**

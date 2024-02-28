@@ -36,9 +36,8 @@ public class LoginController {
     }
 
     /**
-     * Configures GET requests upon user search
-     * interaction. Presents results of the
-     * requests.
+     * Validates the info of a user
+     * when a login takes place
      */
     @PostMapping("login/validate")
     public String showResults(@RequestParam("username") String username,
@@ -62,9 +61,8 @@ public class LoginController {
     }
 
     /**
-     * Configures GET requests upon user search
-     * interaction. Presents results of the
-     * requests.
+     * Validates the info of a user
+     * when a new registration takes place
      */
     @PostMapping("register/validate")
     public String showResults(@RequestParam("username") String username,

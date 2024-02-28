@@ -50,14 +50,4 @@ public class SearchController {
 
         return "bookSearch.html";
     }
-
-    /**
-     * Configures GET requests upon user search
-     * interaction. Presents results of the
-     * requests.
-     */
-    @GetMapping("/register")
-    public String showResults() {
-        return "register.html";
-    }
 }
