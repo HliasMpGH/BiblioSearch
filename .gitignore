@@ -1,6 +1,3 @@
 # ignore files
 target
 .vscode
-
-# application private configs
-*.properties
