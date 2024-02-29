@@ -10,6 +10,23 @@ This project represents a Spring Boot server application hosted locally, designe
 - Maven
 - Spring Boot
 
+## Setting Up Database Credentials
+
+1. Navigate to the [src/main/resources](gui/src/main/resources) directory in the project.
+
+2. Open the `[application.properties](gui/src/main/resources/application.properties)` file in a text editor.
+
+3. Locate the database configuration section. You'll find properties like
+   `spring.datasource.username`, and `spring.datasource.password`.
+
+5. Set your desired username and password for the H2 embedded database. For example:
+
+   ```properties
+   spring.datasource.url=jdbc:h2:mem:testdb
+   spring.datasource.driverClassName=org.h2.Driver
+   spring.datasource.username=myusername
+   spring.datasource.password=mypassword
+
 ## Local Server Handler
 
 The local server handler is a Java application responsible for managing the Spring Boot server. It handles start and stop requests, coordinates with other components of the larger application, and ensures smooth operation of the server.
