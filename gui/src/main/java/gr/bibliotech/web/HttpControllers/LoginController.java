@@ -40,7 +40,7 @@ public class LoginController {
      * when a login takes place
      */
     @PostMapping("login/validate")
-    public String showResults(@RequestParam("username") String username,
+    public String authenticateLogin(@RequestParam("username") String username,
                               @RequestParam("password") String password,
                               Model model) {
 
@@ -65,7 +65,7 @@ public class LoginController {
      * when a new registration takes place
      */
     @PostMapping("register/validate")
-    public String showResults(@RequestParam("username") String username,
+    public String authenticateRegister(@RequestParam("username") String username,
                               @RequestParam("password") String password,
                               @RequestParam("email") String email,
                               Model model) {
