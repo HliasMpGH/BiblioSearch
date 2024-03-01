@@ -51,7 +51,7 @@ This project represents a Spring Boot server application hosted locally, designe
 	   `spring.datasource.password` 
 	- The same credentials can be used later to access the data in http://localhost:8080/h2-console
 
-	- After setting your desired username and password for the embedded database, it should should look something like this:
+	- After setting your desired username and password for the embedded database, it should look something like this:
 
 
 	```
