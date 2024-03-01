@@ -23,7 +23,7 @@ public class BookDAO {
     JdbcTemplate jdbcTemplate;
 
     /**
-     * Retrives the Registered Books from the Data Base
+     * Retrieves the Registered Books from the Data Base
      * @return a list of books
      */
     public List<Book> getBooks() {
