@@ -79,10 +79,8 @@ public class Server {
     public static boolean isPortAvailable() {
         try (Socket socket = new Socket(host, port)) {
             return false;
-        } catch (ConnectException e) {
-            return true;
         } catch (IOException e) {
-            return false;
+            return true;
         }
     }
 
