@@ -6,6 +6,6 @@ package gr.bibliotech.gui;
  */
 public class Launcher {
     public static void main(String[] args) {
-        App.openWindow(args);
+        ServerHandler.show(args);
     }
 }

@@ -1,19 +1,17 @@
-package gr.bibliotech.web;
-
-import java.util.List;
+package gr.bibliotech.web.controller;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
-import gr.bibliotech.ErrorHandlers.InvalidInfoException;
+import gr.bibliotech.error.InvalidInfoException;
 import gr.bibliotech.app.Book;
 import gr.bibliotech.data.BookDAO;
 import gr.bibliotech.data.UserDAO;
+import gr.bibliotech.web.Server;
 
 @Controller
 @ComponentScan("gr.bibliotech")

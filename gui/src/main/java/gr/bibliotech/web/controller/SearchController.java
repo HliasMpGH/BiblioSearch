@@ -1,4 +1,4 @@
-package gr.bibliotech.web;
+package gr.bibliotech.web.controller;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 
 import gr.bibliotech.app.Book;
 import gr.bibliotech.data.BookDAO;
+import gr.bibliotech.web.Server;
 
 @Controller
 @ComponentScan("gr.bibliotech")

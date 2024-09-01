@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import gr.bibliotech.PropertyHandler;
-import gr.bibliotech.gui.App;
+import gr.bibliotech.gui.ServerHandler;
 
 @SpringBootApplication
 public class Server {
@@ -40,7 +40,7 @@ public class Server {
                 ctx = SpringApplication.run(Server.class, ""); // override CLI arguments
                 return running = true;
             } catch (Exception e) {
-                App.logWarning("Error while Starting Server: " + e.getMessage() + "\n");
+                ServerHandler.logWarning("Error while Starting Server: " + e.getMessage() + "\n");
             }
         }
         return false;
@@ -69,7 +69,7 @@ public class Server {
                 rt.exec("rundll32 url.dll,FileProtocolHandler " + location);
                 return true;
             } catch (Exception e) {
-                App.logWarning("Error While Opening Browser");
+                ServerHandler.logWarning("Error While Opening Browser");
             }
         }
         return false;

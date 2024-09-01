@@ -1,4 +1,4 @@
-package gr.bibliotech.ErrorHandlers;
+package gr.bibliotech.error;
 
 public class InvalidInfoException extends RuntimeException {
 

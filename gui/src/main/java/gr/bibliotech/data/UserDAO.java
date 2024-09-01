@@ -16,7 +16,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;
 
-import gr.bibliotech.ErrorHandlers.InvalidInfoException;
+import gr.bibliotech.error.InvalidInfoException;
 import gr.bibliotech.app.User;
 
 @Repository

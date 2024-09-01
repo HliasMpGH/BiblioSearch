@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import gr.bibliotech.PropertyHandler;
 import gr.bibliotech.web.Server;
 
-public class App extends Application {
+public class ServerHandler extends Application {
 
     /** the main root that will hold all the components */
     private VBox root;
@@ -46,7 +46,7 @@ public class App extends Application {
      * Opens the Main Window that Represents the Handler 
      * @param args
      */
-    public static void openWindow(String[] args) {
+    public static void show(String[] args) {
         launch(args);
     }
 
