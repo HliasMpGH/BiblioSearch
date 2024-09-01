@@ -2,6 +2,7 @@ package gr.bibliotech.web.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,12 +12,18 @@ import org.springframework.ui.Model;
 
 import gr.bibliotech.app.Book;
 import gr.bibliotech.data.BookDAO;
-import gr.bibliotech.web.Server;
 
 @Controller
 @ComponentScan("gr.bibliotech")
 @RequestMapping("books")
 public class SearchController {
+
+    private BookDAO bookDAO;
+
+    @Autowired
+    public SearchController(BookDAO bookDAO) {
+        this.bookDAO = bookDAO;
+    }
 
     /**
      * The Main Search Page.
@@ -36,17 +43,17 @@ public class SearchController {
                               @RequestParam("genre") String genre,
                               Model model) {
 
-        BookDAO bookBean = Server.getInstance().getBean(BookDAO.class);
-
         // get the books that match the specified criteria
-        List<Book> matchingBooks = bookBean.findBooks(query, genre);
-
+        List<Book> matchingBooks = bookDAO.findBooks(query, genre);
 
         // present the results, or an appropriate message in case of no results
         if (matchingBooks.size() != 0) {
             model.addAttribute("books", matchingBooks);
         } else {
-            model.addAttribute("message", "No Books that Match the Criteria Found!");
+            model.addAttribute(
+             "message",
+             "No Books that Match the Criteria Found!"
+            );
         }
 
         return "bookSearch.html";

@@ -86,7 +86,9 @@ public class ServerHandler extends Application {
 
             setButtonsStatus(false); // dont allow user interaction during boot up of server
 
-            logTextln("Starting Server...");
+            if (!Server.isLive()) {
+                logTextln("Starting Server...");
+            }
 
             try {
                 Server.start();
