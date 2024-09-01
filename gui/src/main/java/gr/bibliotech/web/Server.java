@@ -52,7 +52,8 @@ public class Server {
      */
     public static boolean stop() {
         if (running) {
-            ctx.close();
+            // ctx.close();
+            SpringApplication.exit(ctx, () -> 0);
             return !(running = false);
         }
         return false;
