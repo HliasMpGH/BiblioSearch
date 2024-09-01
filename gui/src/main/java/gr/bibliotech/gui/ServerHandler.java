@@ -13,9 +13,11 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 
 import gr.bibliotech.PropertyHandler;
 import gr.bibliotech.web.Server;
+import gr.bibliotech.error.ServerException;
 
 public class ServerHandler extends Application {
 
@@ -86,34 +88,52 @@ public class ServerHandler extends Application {
 
             logTextln("Starting Server...");
 
-            if (!Server.start()) {
-                logWarning("Server is Already Running");
-            } else {
+            try {
+                Server.start();
+
                 logTextln("Server Started");
 
                 // update visual of status
                 statusColor.setFill(Color.GREEN);
+            } catch (ServerException ex) {
+                // server is already running
+                logWarning(ex.getMessage());
+            } catch (Exception ex) {
+                // something went wrong with server boot up
+                logWarning(
+                    "Problem While Starting Server: " + ex.getMessage() + "\n"
+                );
             }
-
             setButtonsStatus(true);
         });
 
         // configure the server kill button
         endButton.setOnAction(e -> {
-            if (Server.stop()) {
+            try {
+                Server.stop();
+
                 logTextln("Server Stopped");
 
                 // update visual of status
                 statusColor.setFill(Color.RED);
-            } else {
-                logWarning("Server is Not Running");
+            } catch (ServerException ex) {
+                // server is not running
+                logWarning(ex.getMessage());
             }
         });
 
         // configure the server opening button
         openButton.setOnAction(e -> {
-            if (!Server.open()) {
-                logTextln("Start the Server Before Opening!");
+            try {
+                Server.open();
+            } catch (ServerException ex) {
+                // server is not running
+                logWarning(ex.getMessage());
+            } catch (IOException ex) {
+                // something went wrong with browser boot up
+                logWarning(
+                    "Problem While Opening Browser: " + ex.getMessage() + "\n"
+                );
             }
         });
 
@@ -128,7 +148,11 @@ public class ServerHandler extends Application {
         primaryStage.setTitle(handlerName);
         primaryStage.getIcons().add(new Image(handlerImg));
         primaryStage.setResizable(false);
-        primaryStage.setOnCloseRequest(e -> Server.stop()); // kill the server upon application exit - important
+        primaryStage.setOnCloseRequest(e -> {
+            try {
+                Server.stop();
+            } catch (ServerException ex) {}
+        }); // kill the server upon application exit - important
         primaryStage.show();
     }
 

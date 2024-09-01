@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import gr.bibliotech.PropertyHandler;
-import gr.bibliotech.gui.ServerHandler;
+import gr.bibliotech.error.ServerException;
 
 @SpringBootApplication
 public class Server {
@@ -34,46 +34,41 @@ public class Server {
      * Boots up the Server
      * @return true if the server was not running; false otherwise
      */
-    public static boolean start() {
-        if (!running) {
-            try {
-                ctx = SpringApplication.run(Server.class, ""); // override CLI arguments
-                return running = true;
-            } catch (Exception e) {
-                ServerHandler.logWarning("Error while Starting Server: " + e.getMessage() + "\n");
-            }
+    public static void start() throws ServerException {
+        if (running) {
+            throw new ServerException(
+                "Server is Already Running. Cannot Boot up."
+            );
         }
-        return false;
+        ctx = SpringApplication.run(Server.class, ""); // override CLI arguments
+        running = true;
     }
 
     /**
      * Kills the Server
      * @return true if the server was running; false otherwise
      */
-    public static boolean stop() {
-        if (running) {
-            // ctx.close();
-            SpringApplication.exit(ctx, () -> 0);
-            return !(running = false);
+    public static void stop() throws ServerException {
+        if (!running) {
+            throw new ServerException(
+                "Server is Not Running. Cannot kill."
+            );
         }
-        return false;
+        SpringApplication.exit(ctx, () -> 0);
+        running = false;
     }
 
     /**
      * Opens the Connection in the default browser
      * @return true if the server is running; false otherwise
      */
-    public static boolean open() {
-        if (running) {
-            Runtime rt = Runtime.getRuntime();
-            try {
-                rt.exec("rundll32 url.dll,FileProtocolHandler " + location);
-                return true;
-            } catch (Exception e) {
-                ServerHandler.logWarning("Error While Opening Browser");
-            }
+    public static void open() throws ServerException, IOException {
+        if (!running) {
+            throw new ServerException(
+                "Server is Not Running. Cannot Open."
+            );
         }
-        return false;
+        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + location);
     }
 
     /**
