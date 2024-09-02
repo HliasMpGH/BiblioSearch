@@ -93,7 +93,7 @@
                 <archive>
                     <manifest>
                         <addClasspath>true</addClasspath>
-                        <mainClass>gr.bibliotech.gui.Launcher</mainClass>
+                        <mainClass>gr.bibliotech.Launcher</mainClass>
                     </manifest>
                 </archive>
             </configuration>
@@ -145,5 +145,5 @@
         </plugin>
     </plugins>
 </build>
-  
+
 </project>
