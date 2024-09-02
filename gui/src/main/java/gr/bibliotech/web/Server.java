@@ -1,6 +1,5 @@
 package gr.bibliotech.web;
 
-import java.net.ConnectException;
 import java.net.Socket;
 import java.io.IOException;
 

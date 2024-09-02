@@ -10,7 +10,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,7 +41,6 @@ public class ServerHandler extends Application {
     private String handlerName = PropertyHandler.getCProperty("app.handler.name");
     private String handlerVersion = PropertyHandler.getCProperty("app.version");
     private String handlerImg = PropertyHandler.getCProperty("app.handler.img");
-
 
     /**
      * Opens the Main Window that Represents the Handler 

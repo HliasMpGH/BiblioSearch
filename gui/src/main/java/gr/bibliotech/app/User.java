@@ -1,26 +1,8 @@
 package gr.bibliotech.app;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.sql.Date;
-import java.util.List;
-
-
-
-
 /**
  * User Class.
  * Represents a User.
- * Used to Handle Operations and transactions
- * that concern the platforms' Users.
- * 
- * 
- * 
- * @version 1.0
- * @author Dimitris Papathanasiou, Hlias Mpourdakos
  */
 public class User {
 
@@ -42,10 +24,6 @@ public class User {
         this.password = password;
     }
 
-    /*
-     * Getters
-     */
-
     public int getID() {
         return ID;
     }
@@ -61,8 +39,4 @@ public class User {
     public String getEmail() {
         return email;
     }
-
-    /*
-     * No Setters Allowed
-     */
 }

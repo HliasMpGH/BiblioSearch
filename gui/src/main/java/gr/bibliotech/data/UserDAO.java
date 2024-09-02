@@ -1,8 +1,6 @@
 package gr.bibliotech.data;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import java.util.regex.Pattern;
 
 import javax.sql.DataSource;
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.dao.EmptyResultDataAccessException;
-
 
 import com.google.common.hash.Hashing;
 import java.nio.charset.StandardCharsets;

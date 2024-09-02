@@ -1,5 +1,10 @@
 package gr.bibliotech.error;
 
+/**
+ * Represents a Problem with the
+ * Credentials a User Provides
+ * to the Platform.
+ */
 public class InvalidInfoException extends RuntimeException {
 
     private String invalidCredential;

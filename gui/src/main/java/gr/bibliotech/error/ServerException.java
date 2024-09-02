@@ -1,5 +1,9 @@
 package gr.bibliotech.error;
 
+/**
+ * Represents a Problem with the
+ * Runtime of the Server.
+ */
 public class ServerException extends Exception {
 
     public ServerException(String message) {

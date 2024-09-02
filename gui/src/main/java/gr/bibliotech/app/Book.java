@@ -1,10 +1,8 @@
 package gr.bibliotech.app;
 
 /**
- * 
  * Book Class.
  * Represents a Book.
- * 
  */
 public class Book {
 
@@ -17,8 +15,6 @@ public class Book {
     private int noPages;
 
     /**
-     * 2nd constructor - used to shell already existing Books.
-     * 
      * @param ISBN
      * @param title
      * @param author
@@ -37,10 +33,6 @@ public class Book {
         this.genre = genre;
         this.noPages = noPages;
     }
-
-    /*
-     * Getters
-     */
 
     public String getISBN() {
         return ISBN;
@@ -69,8 +61,4 @@ public class Book {
     public int getNoPages() {
         return noPages;
     }
-
-    /*
-     * No Setters Allowed.
-     */
 }
