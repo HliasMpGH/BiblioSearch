@@ -1,4 +1,6 @@
-package gr.bibliotech.gui;
+package gr.bibliotech;
+
+import gr.bibliotech.gui.ServerHandler;
 
 /**
  * The Launcher of the App.

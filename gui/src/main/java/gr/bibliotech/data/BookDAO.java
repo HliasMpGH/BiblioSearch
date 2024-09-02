@@ -66,7 +66,7 @@ public class BookDAO {
         List<Book> filteredBooks = new ArrayList<>();
 
         // the pattern to search by
-        Pattern pattern = Pattern.compile(filter, Pattern.CASE_INSENSITIVE | Pattern.LITERAL); 
+        Pattern pattern = Pattern.compile(filter, Pattern.CASE_INSENSITIVE | Pattern.LITERAL);
 
         for (Book book : books) {
             // try to match the pattern in the description and genre of Book
