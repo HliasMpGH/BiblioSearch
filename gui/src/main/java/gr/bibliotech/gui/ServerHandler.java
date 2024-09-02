@@ -36,6 +36,7 @@ public class ServerHandler extends Application {
     private Button startButton;
     private Button openButton;
     private Button endButton;
+    private static final double BUTTON_WIDTH = 125;
 
     /** the area used for information logging */
     private static TextArea infoArea;
@@ -63,8 +64,11 @@ public class ServerHandler extends Application {
         statusColor.setFill(Color.RED); // server is inactive on application boot up
 
         startButton = new Button("Start Local Server");
-        openButton = new Button("Open Local Server");
-        endButton = new Button("End Local Server  ");
+        openButton = new Button("Open Viewer");
+        endButton = new Button("End Local Server");
+        startButton.setPrefWidth(BUTTON_WIDTH);
+        openButton.setPrefWidth(BUTTON_WIDTH);
+        endButton.setPrefWidth(BUTTON_WIDTH);
 
         infoArea = new TextArea();
         infoArea.setEditable(false);
