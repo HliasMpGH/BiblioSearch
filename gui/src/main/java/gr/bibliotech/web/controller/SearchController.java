@@ -13,6 +13,11 @@ import org.springframework.ui.Model;
 import gr.bibliotech.app.Book;
 import gr.bibliotech.data.BookDAO;
 
+/**
+ * The Controller that Handles
+ * All the Requests Regarding
+ * Book Needs.
+ */
 @Controller
 @ComponentScan("gr.bibliotech")
 @RequestMapping("books")
@@ -34,7 +39,7 @@ public class SearchController {
     }
 
     /**
-     * Configures GET requests upon user search
+     * Handles GET requests upon user search
      * interaction. Presents results of the
      * requests.
      */

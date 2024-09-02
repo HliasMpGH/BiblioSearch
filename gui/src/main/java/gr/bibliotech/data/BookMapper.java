@@ -7,10 +7,13 @@ import org.springframework.jdbc.core.RowMapper;
 
 import gr.bibliotech.app.Book;
 
+/**
+ * JPA implementation of Book.
+ */
 public class BookMapper implements RowMapper<Book> {
 
     /**
-     * Map the book mysql data to class
+     * Maps the book table data to class data.
      */
     @Override
     public Book mapRow(ResultSet rs, int rowNum) throws SQLException {

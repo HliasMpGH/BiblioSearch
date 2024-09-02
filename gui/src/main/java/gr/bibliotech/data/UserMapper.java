@@ -7,10 +7,13 @@ import org.springframework.jdbc.core.RowMapper;
 
 import gr.bibliotech.app.User;
 
+/**
+ * JPA implementation of User.
+ */
 public class UserMapper implements RowMapper<User> {
 
     /**
-     * Map the user mysql data to class
+     * Maps the user table data to class data.
      */
     @Override
     public User mapRow(ResultSet rs, int rowNum) throws SQLException {

@@ -10,6 +10,10 @@ import org.springframework.context.ConfigurableApplicationContext;
 import gr.bibliotech.PropertyHandler;
 import gr.bibliotech.error.ServerException;
 
+/**
+ * Represents the Server that
+ * Gives Life to the Application.
+ */
 @SpringBootApplication
 public class Server {
 
@@ -30,8 +34,9 @@ public class Server {
 
 
     /**
-     * Boots up the Server
-     * @return true if the server was not running; false otherwise
+     * Boots up the Server.
+     * @throws ServerException in case the server was
+     * already running.
      */
     public static void start() throws ServerException {
         if (running) {
@@ -44,8 +49,9 @@ public class Server {
     }
 
     /**
-     * Kills the Server
-     * @return true if the server was running; false otherwise
+     * Kills the Server.
+     * @throws ServerException in case the server
+     * was not running.
      */
     public static void stop() throws ServerException {
         if (!running) {
@@ -58,8 +64,9 @@ public class Server {
     }
 
     /**
-     * Opens the Connection in the default browser
-     * @return true if the server is running; false otherwise
+     * Opens the Connection in the default browser.
+     * @throws ServerException in case the server
+     * was not running.
      */
     public static void open() throws ServerException, IOException {
         if (!running) {
@@ -71,9 +78,9 @@ public class Server {
     }
 
     /**
-     * Checks if the port is already being used in this machine
+     * Checks if the port is already being used in this machine.
      * @return true if the port is available for use by the local 
-     * server; false otherwise
+     * server; false otherwise.
      */
     public static boolean isPortAvailable() {
         try (Socket socket = new Socket(host, port)) {
@@ -84,14 +91,14 @@ public class Server {
     }
 
     /**
-     * @return true if the server is running; false otherwise
+     * @return true if the server is running; false otherwise.
      */
     public static boolean isLive() {
         return running;
     }
 
     /**
-     * @return the running instance of the server
+     * @return the running instance of the server.
      */
     public static ConfigurableApplicationContext getInstance() {
         return ctx;

@@ -11,6 +11,11 @@ import org.springframework.ui.Model;
 import gr.bibliotech.error.InvalidInfoException;
 import gr.bibliotech.data.UserDAO;
 
+/**
+ * The Controller that Handles
+ * All the Requests Regarding
+ * User Needs Such as Authentication.
+ */
 @Controller
 @ComponentScan("gr.bibliotech")
 public class LoginController {

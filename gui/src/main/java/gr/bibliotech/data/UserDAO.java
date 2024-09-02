@@ -26,8 +26,8 @@ public class UserDAO {
     JdbcTemplate jdbcTemplate;
 
     /**
-     * Retrives the Registered Users from the Data Base
-     * @return a list of users
+     * Retrieves the Registered Users from the Data Base.
+     * @return a list of users.
      */
     public List<User> getUsers() {
         List<User> users = jdbcTemplate.query("SELECT * FROM USERS", new UserMapper());
@@ -36,7 +36,7 @@ public class UserDAO {
     }
 
     /**
-     * Checks a usernames' existance in the platform.
+     * Checks a usernames' existence in the platform.
      * Should be Used Before Creating new User.
      * @param username the username to check
      * @return true if the username is registered in the platform, false otherwise
@@ -50,7 +50,7 @@ public class UserDAO {
     }
 
     /**
-     * Checks an emails' existance in the platform.
+     * Checks an emails' existence in the platform.
      * Should be Used Before Creating new User.
      * @param email the email to check
      * @return true if the email is registered in the platform, false otherwise

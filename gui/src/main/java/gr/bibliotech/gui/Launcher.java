@@ -2,7 +2,10 @@ package gr.bibliotech.gui;
 
 /**
  * The Launcher of the App.
- * The starting point of the application. 
+ * The starting point of the application.
+ * @version 1.0
+ * @author Hlias Mpourdakos
+ * @see gr.bibliotech.gui.ServerHandler
  */
 public class Launcher {
     public static void main(String[] args) {

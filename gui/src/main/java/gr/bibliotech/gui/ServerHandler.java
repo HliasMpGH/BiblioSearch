@@ -18,6 +18,9 @@ import gr.bibliotech.PropertyHandler;
 import gr.bibliotech.web.Server;
 import gr.bibliotech.error.ServerException;
 
+/**
+ * The Local Server Handler GUI.
+ */
 public class ServerHandler extends Application {
 
     /** the main root that will hold all the components */

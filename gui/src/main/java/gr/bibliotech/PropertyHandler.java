@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * The Handler of all the Properties
+ * of the Application such as hostname,
+ * version etc.
+ */
 public class PropertyHandler {
 
     // the file of apps' configurations
@@ -14,7 +19,6 @@ public class PropertyHandler {
 
     // the ClassLoader of this class, used for accessing properties
     private static ClassLoader loader = PropertyHandler.class.getClassLoader();
-
 
     // init config memory upon application boot up
     static {
