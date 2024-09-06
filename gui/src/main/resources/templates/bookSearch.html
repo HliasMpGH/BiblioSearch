@@ -35,13 +35,11 @@
             <div class="filter-options">
                 <label for="genre">Genre:</label>
                 <select id="genre" name="genre">
-                    <option value="any">Any</option>
-                    <option value="adventure">Adventure</option>
-                    <option value="drama">Drama</option>
-                    <option value="crime">Crime</option>
-                    <option value="Dystopian">Dystopian</option>
-                    <option value="Romance">Romance</option>
-                    <!-- Add more genre options as needed -->
+                    <option
+                        th:each = "genre : ${T(gr.bibliotech.data.BookGenre).values()}"
+                        th:value = "${genre}"
+                        th:text = "${genre}"
+                    >
                 </select>
             </div>
         </form>
