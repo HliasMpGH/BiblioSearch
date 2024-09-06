@@ -30,9 +30,9 @@ public class UserDAO {
      * @return a list of users.
      */
     public List<User> getUsers() {
-        List<User> users = jdbcTemplate.query("SELECT * FROM USERS", new UserMapper());
-
-        return users;
+        return jdbcTemplate.query(
+            "SELECT * FROM USERS", new UserMapper()
+        );
     }
 
     /**
@@ -44,9 +44,9 @@ public class UserDAO {
     public boolean existsUserName(String username) {
         String query = "SELECT COUNT(*) > 0 FROM USERS WHERE username = ?";
 
-        Boolean existsName = jdbcTemplate.queryForObject(query, Boolean.class, username);
-
-        return existsName;
+        return jdbcTemplate.queryForObject(
+            query, Boolean.class, username
+        );
     }
 
     /**
@@ -58,13 +58,13 @@ public class UserDAO {
     public boolean existsUserMail(String email) {
         String query = "SELECT COUNT(*) > 0 FROM USERS WHERE email = ?";
 
-        Boolean existsMail = jdbcTemplate.queryForObject(query, Boolean.class, email);
-
-        return existsMail;
+        return jdbcTemplate.queryForObject(
+            query, Boolean.class, email
+        );
     }
 
     /**
-     * Used to Authenticate a users' Credentials upon Signing In 
+     * Used to Authenticate a users' Credentials upon Signing In
      * @param username the username to match
      * @param password the password to match with association to the username
      * @return the user that matches the username & password association
