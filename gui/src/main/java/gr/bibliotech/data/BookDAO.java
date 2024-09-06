@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.sql.Types;
 
 import javax.sql.DataSource;
 
@@ -27,9 +28,9 @@ public class BookDAO {
      * @return a list of books
      */
     public List<Book> getBooks() {
-        List<Book> books = jdbcTemplate.query("SELECT * FROM BOOKS", new BookMapper());
-
-        return books;
+        return jdbcTemplate.query(
+            "SELECT * FROM BOOKS", new BookMapper()
+        );
     }
 
     /**
@@ -38,21 +39,21 @@ public class BookDAO {
      * @return a list of books that match the term
      */
     public List<Book> getMatchingBooks(String term) {
-        List<Book> matchingBooks = new ArrayList<>();
+        String query = ""
+        + " SELECT * FROM BOOKS"
+        + " WHERE LOWER(TITLE)"
+        + " LIKE LOWER(?)"
+        + " OR LOWER(AUTHOR)"
+        + " LIKE LOWER(?)";
 
-        // the pattern to search by
-        Pattern pattern = Pattern.compile(term, Pattern.CASE_INSENSITIVE | Pattern.LITERAL);
+        String matchTerm = "%" + term + "%";
 
-        for (Book book : getBooks()) {
-            // try to match the pattern in the title and author of Book
-            Matcher titleString = pattern.matcher(book.getTitle());
-            Matcher authorSting = pattern.matcher(book.getAuthor());
-
-            if (titleString.find() || authorSting.find()) {
-                matchingBooks.add(book); // the book matches the search
-            }
-        }
-        return matchingBooks;
+        return jdbcTemplate.query(
+            query,
+            new Object[] {matchTerm, matchTerm}, // the parameters to bind
+            new int[] {Types.VARCHAR, Types.VARCHAR}, // the sql types of the parameters
+            new BookMapper() // the record mapper
+        );
     }
 
     /**
