@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 import gr.bibliotech.app.Book;
 import gr.bibliotech.data.BookDAO;
+import gr.bibliotech.data.BookGenre;
 
 /**
  * The Controller that Handles
@@ -49,7 +50,7 @@ public class SearchController {
                               Model model) {
 
         // get the books that match the specified criteria
-        List<Book> matchingBooks = bookDAO.findBooks(query, genre);
+        List<Book> matchingBooks = bookDAO.findBooks(query, BookGenre.valueOf(genre));
 
         // present the results, or an appropriate message in case of no results
         if (matchingBooks.size() != 0) {

@@ -87,11 +87,11 @@ public class BookDAO {
      * @param genre the genre specified
      * @return a list of books
      */
-    public List<Book> findBooks(String query, String genre) {
+    public List<Book> findBooks(String query, BookGenre genre) {
         List<Book> books = (!query.trim().isEmpty() ? getMatchingBooks(query) : getBooks());
 
-        if (!genre.equals("any")) {
-            books = filterBooks(books, genre);
+        if (genre != BookGenre.ANY) {
+            books = filterBooks(books, genre.toString());
         }
 
         return books;
