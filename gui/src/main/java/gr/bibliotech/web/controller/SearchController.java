@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import gr.bibliotech.app.Book;
-import gr.bibliotech.data.BookDAO;
 import gr.bibliotech.data.BookGenre;
+import gr.bibliotech.data.BookService;
 
 /**
  * The Controller that Handles
@@ -24,11 +24,11 @@ import gr.bibliotech.data.BookGenre;
 @RequestMapping("books")
 public class SearchController {
 
-    private BookDAO bookDAO;
+    private BookService bookService;
 
     @Autowired
-    public SearchController(BookDAO bookDAO) {
-        this.bookDAO = bookDAO;
+    public SearchController(BookService bookService) {
+        this.bookService = bookService;
     }
 
     /**
@@ -50,7 +50,7 @@ public class SearchController {
                               Model model) {
 
         // get the books that match the specified criteria
-        List<Book> matchingBooks = bookDAO.findBooks(query, BookGenre.valueOf(genre));
+        List<Book> matchingBooks = bookService.findBooks(query, BookGenre.valueOf(genre));
 
         // present the results, or an appropriate message in case of no results
         if (matchingBooks.size() != 0) {

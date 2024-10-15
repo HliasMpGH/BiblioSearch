@@ -4,56 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.sql.Types;
-
-import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import gr.bibliotech.app.Book;
 
-@Repository
-public class BookDAO {
+@Service
+public class BookService {
+
+    private BookRepository bookRepository;
 
     @Autowired
-    DataSource dataSource;
-
-    @Autowired
-    JdbcTemplate jdbcTemplate;
-
-    /**
-     * Retrieves the Registered Books from the Data Base
-     * @return a list of books
-     */
-    public List<Book> getBooks() {
-        return jdbcTemplate.query(
-            "SELECT * FROM BOOKS", new BookMapper()
-        );
-    }
-
-    /**
-     * Returns the Books that Match a Search Term (title or author)
-     * @param term the term to search by
-     * @return a list of books that match the term
-     */
-    public List<Book> getMatchingBooks(String term) {
-        String query = ""
-        + " SELECT * FROM BOOKS"
-        + " WHERE LOWER(TITLE)"
-        + " LIKE LOWER(?)"
-        + " OR LOWER(AUTHOR)"
-        + " LIKE LOWER(?)";
-
-        String matchTerm = "%" + term + "%";
-
-        return jdbcTemplate.query(
-            query,
-            new Object[] {matchTerm, matchTerm}, // the parameters to bind
-            new int[] {Types.VARCHAR, Types.VARCHAR}, // the sql types of the parameters
-            new BookMapper() // the record mapper
-        );
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
     /**
@@ -88,7 +52,11 @@ public class BookDAO {
      * @return a list of books
      */
     public List<Book> findBooks(String query, BookGenre genre) {
-        List<Book> books = (!query.trim().isEmpty() ? getMatchingBooks(query) : getBooks());
+        List<Book> books = (
+            !query.trim().isEmpty()
+            ? bookRepository.getMatchingBooks(query)
+            : bookRepository.getBooks()
+        );
 
         if (genre != BookGenre.ANY) {
             books = filterBooks(books, genre.toString());

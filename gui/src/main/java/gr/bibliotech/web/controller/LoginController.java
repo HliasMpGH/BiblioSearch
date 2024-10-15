@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.ui.Model;
 
 import gr.bibliotech.error.InvalidInfoException;
-import gr.bibliotech.data.UserDAO;
+import gr.bibliotech.data.UserService;
 
 /**
  * The Controller that Handles
@@ -20,11 +20,11 @@ import gr.bibliotech.data.UserDAO;
 @ComponentScan("gr.bibliotech")
 public class LoginController {
 
-    private UserDAO userDAO;
+    private UserService userService;
 
     @Autowired
-    public LoginController(UserDAO userDAO) {
-        this.userDAO = userDAO;
+    public LoginController(UserService userService) {
+        this.userService = userService;
     }
 
     /**
@@ -54,7 +54,7 @@ public class LoginController {
 
         // validate users' credentials
         try {
-            userDAO.authenticate(username, password);
+            userService.authenticate(username, password);
 
             // valid credentials; redirect to search
             return "redirect:/books";
@@ -80,18 +80,18 @@ public class LoginController {
             /* validate users' credentials */
 
             // username
-            userDAO.validateUsername(username);
+            userService.validateUsername(username);
 
             // password
-            userDAO.validatePassword(password);
+            userService.validatePassword(password);
 
             // email
-            userDAO.validateEmail(email);
+            userService.validateEmail(email);
 
             /* valid credentials */
 
             // register the user
-            userDAO.registerUser(username, email, password);
+            userService.registerUser(username, email, password);
 
             // redirect to login
             return "redirect:/login";
