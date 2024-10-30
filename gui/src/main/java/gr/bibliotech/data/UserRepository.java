@@ -39,8 +39,6 @@ public class UserRepository {
         );
     }
 
-
-
     /**
      * Checks an emails' existence in the platform.
      * Should be Used Before Creating new User.

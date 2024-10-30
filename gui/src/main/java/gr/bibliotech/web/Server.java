@@ -79,7 +79,7 @@ public class Server {
 
     /**
      * Checks if the port is already being used in this machine.
-     * @return true if the port is available for use by the local 
+     * @return true if the port is available for use by the local
      * server; false otherwise.
      */
     public static boolean isPortAvailable() {
@@ -95,12 +95,5 @@ public class Server {
      */
     public static boolean isLive() {
         return running;
-    }
-
-    /**
-     * @return the running instance of the server.
-     */
-    public static ConfigurableApplicationContext getInstance() {
-        return ctx;
     }
 }
