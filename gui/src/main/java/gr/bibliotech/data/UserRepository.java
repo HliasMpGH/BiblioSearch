@@ -12,8 +12,12 @@ import gr.bibliotech.app.User;
 @Repository
 public class UserRepository {
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    public UserRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * Retrieves the Registered Users from the Data Base.

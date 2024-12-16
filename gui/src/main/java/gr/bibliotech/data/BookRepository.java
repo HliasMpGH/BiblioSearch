@@ -12,8 +12,12 @@ import gr.bibliotech.app.Book;
 @Repository
 public class BookRepository {
 
+    private final JdbcTemplate jdbcTemplate;
+
     @Autowired
-    private JdbcTemplate jdbcTemplate;
+    public BookRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
+    }
 
     /**
      * Retrieves the Registered Books from the Data Base
